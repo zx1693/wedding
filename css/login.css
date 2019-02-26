@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #1164db;
+}
+body h1 {
+  color: #fff;
+  margin-top: 112pt;
+  margin-bottom: 30pt;
+  text-align: center;
+  font-size: 40px;
+}
+body .login_in {
+  width: 360pt;
+  height: 200pt;
+  margin: 30pt auto 0;
+  background: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+body .login_in li {
+  list-style: none;
+  color: #666;
+  font-size: 12pt;
+  margin-left: 80pt;
+  text-align: left;
+}
+body .login_in li input {
+  border: none;
+  width: 200px;
+  margin-left: 20pt;
+  border-bottom: 1px solid #666;
+}
+body .login_in li p {
+  font-size: 7pt;
+#999
+  margin-top: 5pt;
+}
+body .login_in li:nth-child(1) {
+  padding-top: 42pt;
+}
+body .login_in li:nth-child(2) {
+  margin-top: 31pt;
+}
+body .login_in button {
+  margin-top: 12pt;
+  width: 100px;
+  height: 60px;
+  background: #1164db;
+  font-size: 16pt;
+  color: #fff;
+}

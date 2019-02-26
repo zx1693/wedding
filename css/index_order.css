@@ -1,0 +1,21 @@
+.order_done,
+.order_undo {
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  margin: 7px 20px 0;
+  text-align: center;
+  line-height: 50px;
+  font-size: 15pt;
+  background: rgba(255,255,255,0.7);
+}
+.order_done:hover,
+.order_undo:hover {
+  cursor: pointer;
+  color: #fff !important;
+  background: #56a4fd !important;
+}
+.order_done {
+  color: #fff;
+  background: #56a4fd;
+}

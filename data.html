@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/Mock.js/1.0.1-beta3/mock-min.js"></script>
+	</head>
+	<body>
+
+	</body>
+	<script type="text/javascript">
+// 		var id=location.search.substring(location.search.indexOf("?")+1,);
+// 		var arrid=id.split("&")
+// 		var num=arrid[1].substring(arrid[1].indexOf("=")+1,)
+// 		// 获取地址栏一页显示数
+		var Random = Mock.Random;
+		var data_json = Mock.mock({
+			"code": 0,
+			"msg": "",
+			"count": 1000,
+			'data|10': [{
+				"id|+1": 10000,
+				"name": '@cname',
+				"tel|18357100000-18357199999": 100,
+				"memberlevel|1": [
+					"钻石会员",
+					"白金会员",
+					"黄金会员",
+					"白银会员"
+				],
+				"cost|9000-9999": 1,
+				"costdetail":[
+					"@cparagraph"
+				],
+				"operate":"<a href=''>详情</a>"
+			}]
+
+		})
+		document.write(JSON.stringify(data_json, null, 4))
+		console.log(JSON.stringify(data_json, null, 4))
+	</script>
+</html>

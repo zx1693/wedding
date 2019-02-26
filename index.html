@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+
+		<!-- 头部样式 -->
+		<link rel="stylesheet" type="text/css" href="css/header.css" />
+		<link rel="stylesheet" type="text/css" href="css/layui.css" />
+		<!-- 首页会员样式 -->
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<!-- 首页订单样式 -->
+		<link rel="stylesheet" type="text/css" href="css/index_order.css" />
+		<!--道具详情样式-->
+		<link rel="stylesheet" type="text/css" href="css/prop.css" >
+		<!--视频样式-->
+		<link rel="stylesheet" href="css/video.css">
+
+	</head>
+	<body>
+		<!-- 大标题 -->
+		<nav>
+			<div class="time">123</div>
+			<h1>适缘婚礼管理系统</h1>
+		</nav>
+		<!-- 导航 -->
+		<div class="layui-container">
+			<ul class="nav layui-row">
+				<li class="title member">会员</li>
+				<li class="title order">订单</li>
+				<li class="title tool">道具</li>
+				<li class="title video">视频</li>
+			</ul>
+		</div>
+		<!-- 主题内容 -->
+		<div class="container">
+			<div class="member_detail layui-hide">
+				<div class="menu">
+					<span><input type="text" placeholder="搜索"></span>
+					<li>创建时间: <input type="date" class="end_data"></li>
+					<li>至 <input type="date" class="start_data"></li>
+					<button class="layui-btn layui-btn-normal">查询</button>
+					<button class="layui-btn layui-btn-normal">新建会员</button>
+				</div>
+				<table class="layui-hide " id="member"></table>
+				<div id="member_page"></div>
+			</div>
+			<div class="order_detail">
+				<div class="menu">
+					<li class="order_done">已完成</li>
+					<li class="order_undo">未完成</li>
+				</div>
+				<div class="">
+					<table class="layui-hide " id="order_done"></table>
+				</div>
+			</div>
+			<!--道具页-->
+			<div class="tool_detail layui-hide">
+				<div class="menu" ></div>
+				<div class="prop_div" >
+					<table class="layui-table" lay-skin="line" id="prop"></table>
+				</div>
+				<div class="prop_form" 	style="display: none">
+					<h1>道具详情</h1>
+					<form action="">
+						<label> 购买时间
+							<input type="text" class="buy_time">
+						</label>
+						<label> 道具名称
+							<input type="text" class="buy_prop">
+						</label>
+						<label> 数量
+							<input type="text" class="buy_num">
+						</label>
+						<label> 单价
+							<input type="text" class="buy_one_money">
+						</label>
+						<label> 总价
+							<input type="text" class="buy_all_money">
+						</label>
+						<label> 剩余
+							<input type="text" class="buy_surplus">
+						</label>
+						<label>
+							<input type="button"  value="修改" class="modify">
+						</label>
+						<label>
+							<input type="button" value="删除" class="delete">
+						</label>
+					</form>
+				</div>
+			</div>
+			<div class="video_detail layui-hide">
+				<div class="menu">
+						<span><input type="text" placeholder="搜索"></span>
+						<li>创建时间: <input type="date" class="end_data"></li>
+						<li>至 <input type="date" class="start_data"></li>
+						<button class="layui-btn">查询</button>
+						<button class="layui-btn " id="file">上传</button>
+						<button class="layui-btn" id="delete1">删除</button>
+				</div>
+					<div class="vider_all">
+					<ul>
+						<li>
+							<i class="video_select" ></i>
+							<img src="images/media.jpg" alt="">
+							<p>李国栋 2017.10.01</p>
+						</li>
+						<li>
+							<i class="video_select"></i>
+							<img src="images/media.jpg" alt="">
+							<p>李国栋 2017.10.01</p>
+						</li>
+						<li>
+							<i class="video_select"></i>
+							<img src="images/media.jpg" alt="">
+							<p>李国栋 2017.10.01</p>
+						</li>
+						<li>
+							<i class="video_select"></i>
+							<img src="images/media.jpg" alt="">
+							<p>李国栋 2017.10.01</p>
+						</li>
+						<li>
+							<i class="video_select"></i>
+							<img src="images/media.jpg" alt="">
+							<p>李国栋 2017.10.01</p>
+						</li>
+						<li>
+							<i class="video_select"></i>
+							<img src="images/media.jpg" alt="">
+							<p>李国栋 2017.10.01</p>
+						</li>
+						<li>
+							<i class="video_select"></i>
+							<img src="images/media.jpg" alt="">
+							<p>李国栋 2017.10.01</p>
+						</li>
+						<li>
+							<i class="video_select"></i>
+							<img src="images/media.jpg" alt="">
+							<p>李国栋 2017.10.01</p>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 引入样式标签 -->
+		<script src="js/1.8.3.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layui.all.js" type="text/javascript" charset="utf-8"></script>
+		<script src="lay/modules/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script src="js/bootstrap.js" type="text/javascript" charset="utf-8"></script>-->
+		 <!--点击标题切换-->
+		<script type="text/javascript">
+			$(".nav>li").click(function() {
+				var index = $(".nav>li").index(this);
+				// console.log($(".container>div").eq(index).addClass("layui-hide"));
+				$(this).css("color", "#1164db")
+					.siblings().css("color", "black")
+				$(".container > div").eq(index).removeClass("layui-hide")
+					.siblings().addClass("layui-hide");
+			})
+		</script>
+		<!-- 显示时间 -->
+		<script type="text/javascript">
+			Date.prototype.Format = function(fmt) {
+				var o = {
+					"M+": this.getMonth() + 1, //月份 
+					"d+": this.getDate(), //日 
+					"H+": this.getHours(), //小时 
+					"m+": this.getMinutes(), //分 
+					"s+": this.getSeconds(), //秒 
+					"q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+					"S": this.getMilliseconds() //毫秒 
+				};
+				if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+				for (var k in o)
+					if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" +
+						o[k]).substr(("" + o[k]).length)));
+				return fmt;
+			}
+			var time1 = new Date().Format("yyyy-MM-dd");
+			var time2 = new Date().Format("yyyy-MM-dd HH:mm");
+			$(".time").text(time2)
+		</script>
+		<!-- 会员页 -->
+		<script type="text/javascript">
+			layui.use('table', function() {
+				var table = layui.table;
+
+				table.render({
+					elem: '#member',
+					url: 'data/member.json',
+					contentType: 'application/json',
+					cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+						,
+					page: true,
+// 					limit: 10,
+// 					limits: [10, 20, 30],
+					cols: [
+						[{
+								field: 'id',
+								width: 140,
+								title: '卡号',
+								sort: true
+							}, {
+								field: 'name',
+								width: 150,
+								title: '姓名'
+							}, {
+								field: 'tel',
+								width: 180,
+								title: '电话',
+								sort: true
+							}, {
+								field: 'memberlevel',
+								width: 170,
+								title: '会员等级'
+							}, {
+								field: 'cost',
+								title: '消费金额',
+								width: 220,
+								minWidth: 100
+							}, {
+								field: 'costdetail',
+								title: '消费详情',
+								width: 450,
+								minWidth: 100
+							} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+							, {
+								field: 'operate',
+								title: '操作',
+								width: 100,
+							}
+						]
+					]
+				});
+			});
+
+		</script>
+		<!-- 订单页 -->
+		<script type="text/javascript">
+			layui.use('table', function() {
+				var table = layui.table;
+				table.render({
+					elem: '#order_done',
+					url: 'data/order_done.json',
+					contentType: 'application/json',
+					cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+					page: true,
+// 					limit: 10,
+// 					limits: [10, 20, 30],
+					cols: [
+						[{
+								field: 'wedding_time',
+								width: 140,
+								title: '婚礼时间',
+							}, {
+								field: 'name',
+								width: 140,
+								title: '姓名'
+							}, {
+								field: 'tel',
+								width: 180,
+								title: '电话',
+								sort: true
+							}, {
+								field: 'money',
+								width: 100,
+								title: '金额'
+							}, {
+								field: 'deposit',
+								title: '定金',
+								width: 100,
+								minWidth: 100
+							}, {
+								field: 'wedding_meal',
+								title: '婚礼定金',
+								width: 220,
+								minWidth: 100
+							}, {
+								field: 'note',
+								title: '备注',
+								width: 450,
+								minWidth: 100
+							} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+							, {
+								field: 'operate',
+								title: '操作',
+								width: 100
+							}
+						]
+					]
+				});
+			});
+
+			
+		</script>
+		<!--道具页-->
+		<script type="text/javascript">
+			layui.use('table', function() {
+				var table = layui.table;
+				table.render({
+					elem: '#prop',
+					url: 'data/11.json',
+					// cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+					// page: true,
+					// limits: [10,20,50],
+					page:{
+						limit:5,
+					},
+					// count:50,
+
+					cols: [
+						[{
+							field: 'time',
+							width: "10%",
+							title: '时间',
+						}, {
+							field: 'prop',
+							width: "20%",
+							title: '道具名称'
+						}, {
+							field: 'num',
+							width: "15%",
+							title: '数量',
+							sort: true
+						}, {
+							field: 'one_money',
+							width: "15%",
+							title: '单个成本'
+						}, {
+							field: 'all_money',
+							title: '总价',
+							width: "15%",
+						}, {
+							field: 'surplus',
+							title: '剩余',
+							width: "15%",
+							sort: true
+						},//minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+						{
+							field: 'operate',
+							title: '操作',
+							width: "10%",
+						}
+						]
+					]
+				});
+			});
+		</script>
+		<script src="js/prop.js"></script>
+		<script src="js/video.js"></script>
+<html>
